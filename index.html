@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Music Player</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Music Player</h1>
+    </header>
+    <main>
+        <div class="player">
+            <div class="track-info">
+                <img id="album-art" src="default.jpg" alt="Album Art">
+                <div>
+                    <h2 id="track-title">Track Title</h2>
+                    <h3 id="track-artist">Artist Name</h3>
+                </div>
+            </div>
+            <div class="controls">
+                <button  id="prev">Prev</button>
+                <button  id="play-pause">Play</button>
+                <button  id="next">Next</button>
+                <input type="range" id="volume" min="0" max="1" step="0.1">
+            </div>
+            <div class="progress-bar">
+                <input type="range" id="progress" min="0" max="100" value="0">
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Music Player</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
