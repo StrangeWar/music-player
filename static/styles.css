@@ -7,7 +7,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-image: url(background.jpg);
+    background-image: url(images/background.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -38,7 +38,7 @@ main {
     background: rgba(0, 0, 0, 0.3);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-   backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.44);
 }
@@ -57,7 +57,9 @@ main {
     border-radius: 75px;
     margin-right: 2rem;
     margin-left: 2rem;
+    transition: transform 0.1s linear;
 }
+
 
 .controls {
     display: flex;

@@ -1,4 +1,5 @@
-// scripts.js
+// static/scripts.js
+
 const playPauseButton = document.getElementById('play-pause');
 const prevButton = document.getElementById('prev');
 const nextButton = document.getElementById('next');
@@ -10,54 +11,74 @@ const albumArt = document.getElementById('album-art');
 
 const tracks = [
     {
-        title: 'Nagin Dance',
-        artist: 'Anmol Malik',
-        src: 'track1.mp3',
-        albumArt: 'album1.jpg'
+        title: 'Track 1',
+        artist: 'Artist 1',
+        src: 'static/music/track1.mp3',
+        albumArt: 'static/images/album1.jpg'
     },
     {
-        title: 'One Two Three Four ',
-        artist: 'Vishal Dadlani, Hamsika Iyer',
-        src: 'track2.mp3',
-        albumArt: 'album2.jpg'
+        title: 'Track 2',
+        artist: 'Artist 2',
+        src: 'static/music/track2.mp3',
+        albumArt: 'static/images/album2.jpg'
     },
-
+    {
+        title: 'Track 3',
+        artist: 'Artist 3',
+        src: 'static/music/track3.mp3'
+        // No albumArt property
+    }
 ];
+
+const defaultAlbumArt = 'static/images/default.jpeg';
 
 let currentTrackIndex = 0;
 let isPlaying = false;
 const audio = new Audio();
+let spinDegrees = 0;
+let lastTimestamp;
 
 function loadTrack(index) {
     const track = tracks[index];
     audio.src = track.src;
     trackTitle.textContent = track.title;
     trackArtist.textContent = track.artist;
-    albumArt.src = track.albumArt;
+    albumArt.src = track.albumArt ? track.albumArt : defaultAlbumArt;
     audio.load();
 }
 
-function playPause() {
+function playTrack() {
+    audio.play();
+    playPauseButton.textContent = 'Pause';
+    lastTimestamp = performance.now();
+    requestAnimationFrame(animateSpin);
+    isPlaying = true;
+}
+
+function pauseTrack() {
+    audio.pause();
+    playPauseButton.textContent = 'Play';
+    isPlaying = false;
+}
+
+function togglePlayPause() {
     if (isPlaying) {
-        audio.pause();
-        playPauseButton.textContent = 'Play';
+        pauseTrack();
     } else {
-        audio.play();
-        playPauseButton.textContent = 'Pause';
+        playTrack();
     }
-    isPlaying = !isPlaying;
 }
 
 function nextTrack() {
     currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
     loadTrack(currentTrackIndex);
-    if (isPlaying) audio.play();
+    if (isPlaying) playTrack();
 }
 
 function prevTrack() {
     currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
     loadTrack(currentTrackIndex);
-    if (isPlaying) audio.play();
+    if (isPlaying) playTrack();
 }
 
 function updateProgress() {
@@ -72,7 +93,19 @@ function setVolume() {
     audio.volume = volumeControl.value;
 }
 
-playPauseButton.addEventListener('click', playPause);
+function animateSpin(timestamp) {
+    if (!isPlaying) return;
+
+    const elapsed = timestamp - lastTimestamp;
+    lastTimestamp = timestamp;
+
+    spinDegrees += (elapsed / 1000) * 72; // Rotate at 72 degrees per second
+    albumArt.style.transform = `rotate(${spinDegrees}deg)`;
+
+    requestAnimationFrame(animateSpin);
+}
+
+playPauseButton.addEventListener('click', togglePlayPause);
 nextButton.addEventListener('click', nextTrack);
 prevButton.addEventListener('click', prevTrack);
 audio.addEventListener('timeupdate', updateProgress);
