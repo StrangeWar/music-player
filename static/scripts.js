@@ -11,22 +11,22 @@ const albumArt = document.getElementById('album-art');
 
 const tracks = [
     {
-        title: 'Track 1',
-        artist: 'Artist 1',
+        title: 'Naagin Dance',
+        artist: 'Anmol Malik',
         src: 'static/music/track1.mp3',
         albumArt: 'static/images/album1.jpg'
     },
     {
-        title: 'Track 2',
-        artist: 'Artist 2',
+        title: 'one two three four',
+        artist: 'Vishal Dadlani',
         src: 'static/music/track2.mp3',
         albumArt: 'static/images/album2.jpg'
     },
     {
-        title: 'Track 3',
-        artist: 'Artist 3',
+        title: 'Nazar',
+        artist: 'Imaran khan',
         src: 'static/music/track3.mp3'
-        // No albumArt property
+        
     }
 ];
 
