@@ -1,5 +1,3 @@
-// static/scripts.js
-
 const playPauseButton = document.getElementById('play-pause');
 const prevButton = document.getElementById('prev');
 const nextButton = document.getElementById('next');
@@ -24,7 +22,7 @@ const tracks = [
     },
     {
         title: 'Nazar',
-        artist: 'Imaran khan',
+        artist: 'Imran khan',
         src: 'static/music/track3.mp3'
         
     }
